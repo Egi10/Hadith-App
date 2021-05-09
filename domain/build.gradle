@@ -1,0 +1,3 @@
+apply from: "$rootDir/dependencies/plugins.gradle"
+apply from: "$rootDir/dependencies/android.gradle"
+apply from: "$rootDir/dependencies/commons.gradle"
