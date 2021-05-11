@@ -1,17 +1,17 @@
 package id.buaja.data.source.remote.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class HadithResponse(
 
-    @field:SerializedName("number")
-    val number: Int? = null,
+	@Json(name="number")
+	val number: Int? = null,
 
-    @field:SerializedName("id")
-    val id: String? = null,
+	@Json(name="id")
+	val id: String? = null,
 
-    @field:SerializedName("arab")
-    val arab: String? = null,
+	@Json(name="arab")
+	val arab: String? = null,
 
-    val name: String? = ""
+    val name: String
 )

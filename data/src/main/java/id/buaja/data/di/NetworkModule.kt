@@ -7,7 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import id.buaja.data.source.remote.network.ApiService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 @Module
@@ -23,7 +23,7 @@ object NetworkModule {
 
         val retrofit = Retrofit.Builder()
             .baseUrl("https://islamic-api-indonesia.herokuapp.com/api/data/json/hadith/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create())
             .client(httpClient)
             .build()
 
