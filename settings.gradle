@@ -2,4 +2,4 @@ rootProject.name = "Hadith-App"
 include ':app'
 include ':data'
 include ':domain'
-include ':hadith'
+include ':features:hadith'
