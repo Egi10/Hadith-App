@@ -1,9 +1,9 @@
 package id.buaja.domain.usecase
 
-import id.buaja.domain.ResultState
 import id.buaja.domain.repository.HadithRepository
-import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class HadithUseCaseImpl(private val repository: HadithRepository) : HadithUseCase {
+class HadithUseCaseImpl @Inject constructor(private val repository: HadithRepository) :
+    HadithUseCase {
     override suspend fun getHadith() = repository.getHadith()
 }
