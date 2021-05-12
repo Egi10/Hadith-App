@@ -18,11 +18,13 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
     @Provides
+    @Singleton
     fun provideDatabase(@ApplicationContext context: Context): HadithDatabase = Room.databaseBuilder(
         context,
         HadithDatabase::class.java, "hadith.db"
     ).fallbackToDestructiveMigration().build()
 
     @Provides
+    @Singleton
     fun provideTourismDao(database: HadithDatabase): HadithDao = database.postDao()
 }
