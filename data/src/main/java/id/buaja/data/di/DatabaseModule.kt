@@ -11,10 +11,12 @@ import id.buaja.data.source.local.room.HadithDao
 import id.buaja.data.source.local.room.HadithDatabase
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
+/**
+ * https://developer.android.com/training/dependency-injection/hilt-android#hilt-modules
+ */
 @Module
+@InstallIn(SingletonComponent::class)
 class DatabaseModule {
-    @Singleton
     @Provides
     fun provideDatabase(@ApplicationContext context: Context): HadithDatabase = Room.databaseBuilder(
         context,

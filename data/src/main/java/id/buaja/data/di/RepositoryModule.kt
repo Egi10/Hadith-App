@@ -1,27 +1,23 @@
 package id.buaja.data.di
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.buaja.data.repository.HadithRepositoryImpl
-import id.buaja.data.source.local.HadithLocalDataSource
-import id.buaja.data.source.remote.HadithRemoteDataSource
 import id.buaja.domain.repository.HadithRepository
-import javax.inject.Singleton
 
+/**
+ * https://developer.android.com/training/dependency-injection/hilt-android#hilt-modules
+ */
 @Module
 @InstallIn(SingletonComponent::class)
-object RepositoryModule {
-    @Provides
-    @Singleton
-    fun provideMainRepository(
-        remoteDataSource: HadithRemoteDataSource,
-        localDataSource: HadithLocalDataSource
-    ): HadithRepository {
-        return HadithRepositoryImpl(
-            remoteDataSource = remoteDataSource,
-            localDataSource = localDataSource
-        )
-    }
+abstract class RepositoryModule {
+    /**
+    https://developer.android.com/training/dependency-injection/hilt-android#inject-interfaces
+     */
+    @Binds
+    abstract fun bindHadithRepository(
+        hadithRepositoryImpl: HadithRepositoryImpl
+    ): HadithRepository
 }

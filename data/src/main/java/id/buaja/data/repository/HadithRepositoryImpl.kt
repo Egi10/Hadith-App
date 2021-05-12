@@ -8,12 +8,12 @@ import id.buaja.data.utils.MappingData
 import id.buaja.domain.ResultState
 import id.buaja.domain.repository.HadithRepository
 import kotlinx.coroutines.flow.*
+import javax.inject.Inject
 
-class HadithRepositoryImpl(
+class HadithRepositoryImpl @Inject constructor(
     private val remoteDataSource: HadithRemoteDataSource,
     private val localDataSource: HadithLocalDataSource
-) :
-    HadithRepository {
+) : HadithRepository {
     override suspend fun getHadith(): Flow<ResultState<Boolean>> {
         return flow {
             if (localDataSource.loadAllData().isNullOrEmpty()) {

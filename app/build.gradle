@@ -38,7 +38,9 @@ android {
 }
 
 dependencies {
+    // Data
     implementation project(":data")
+    // Hadith
     implementation project(":features:hadith")
 }
 

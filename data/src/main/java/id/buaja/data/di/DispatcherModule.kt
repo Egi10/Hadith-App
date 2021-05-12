@@ -8,6 +8,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
 
+/**
+ * https://developer.android.com/training/dependency-injection/hilt-android#multiple-bindings
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object DispatcherModule {

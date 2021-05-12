@@ -14,9 +14,7 @@ import id.buaja.domain.usecase.HadithUseCaseImpl
 object UseCaseModule {
     @Provides
     @ViewModelScoped
-    fun provideUseCase(
-        repository: HadithRepository
-    ): HadithUseCase {
+    fun provideUseCase(repository: HadithRepository): HadithUseCase {
         return HadithUseCaseImpl(repository)
     }
 }

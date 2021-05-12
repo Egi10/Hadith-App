@@ -10,9 +10,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * https://developer.android.com/training/dependency-injection/hilt-android#hilt-modules
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+    /**
+    https://developer.android.com/training/dependency-injection/hilt-android#inject-provides
+     */
     @Provides
     fun provideService(): ApiService {
         val httpClient = OkHttpClient.Builder()
