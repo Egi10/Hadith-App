@@ -1,6 +1,7 @@
 package id.buaja.data.repository
 
 import id.buaja.data.source.local.HadithLocalDataSource
+import id.buaja.data.source.local.preference.LoadDataPreference
 import id.buaja.data.source.remote.HadithRemoteDataSource
 import id.buaja.data.source.remote.network.ApiResult
 import id.buaja.data.source.remote.response.HadithResponse
@@ -12,11 +13,12 @@ import javax.inject.Inject
 
 class HadithRepositoryImpl @Inject constructor(
     private val remoteDataSource: HadithRemoteDataSource,
-    private val localDataSource: HadithLocalDataSource
+    private val localDataSource: HadithLocalDataSource,
+    private val preference: LoadDataPreference
 ) : HadithRepository {
     override suspend fun getHadith(): Flow<ResultState<Boolean>> {
         return flow {
-            if (localDataSource.loadAllData().isNullOrEmpty()) {
+            if (!preference.getActive()) {
                 val listHadith: MutableList<HadithResponse> = mutableListOf()
                 remoteDataSource.getHadith("abu-daud")
                     .map {
@@ -62,10 +64,12 @@ class HadithRepositoryImpl @Inject constructor(
                         when (it) {
                             is ApiResult.Success -> {
                                 saveToLocal(data = listHadith)
+                                preference.saveActive(true)
                                 emit(ResultState.Success(true))
                             }
 
                             is ApiResult.Error -> {
+                                preference.saveActive(false)
                                 emit(ResultState.Error(it.throwable))
                             }
                         }

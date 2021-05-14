@@ -13,7 +13,7 @@ object MappingData {
                     no = it.number ?: 0,
                     arab = it.arab ?: "",
                     translator = it.id ?: "",
-                    name = it.name ?: ""
+                    name = it.name
                 )
             )
         }
