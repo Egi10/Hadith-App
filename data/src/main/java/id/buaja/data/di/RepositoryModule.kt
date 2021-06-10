@@ -11,8 +11,9 @@ import javax.inject.Singleton
 /**
  * https://developer.android.com/training/dependency-injection/hilt-android#hilt-modules
  */
-@Module
+
 @InstallIn(SingletonComponent::class)
+@Module
 abstract class RepositoryModule {
     /**
     https://developer.android.com/training/dependency-injection/hilt-android#inject-interfaces

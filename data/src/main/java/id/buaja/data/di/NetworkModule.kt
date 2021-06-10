@@ -14,8 +14,9 @@ import javax.inject.Singleton
 /**
  * https://developer.android.com/training/dependency-injection/hilt-android#hilt-modules
  */
-@Module
+
 @InstallIn(SingletonComponent::class)
+@Module
 object NetworkModule {
     /**
     https://developer.android.com/training/dependency-injection/hilt-android#inject-provides

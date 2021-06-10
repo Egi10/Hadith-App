@@ -14,8 +14,9 @@ import javax.inject.Singleton
 /**
  * https://developer.android.com/training/dependency-injection/hilt-android#hilt-modules
  */
-@Module
+
 @InstallIn(SingletonComponent::class)
+@Module
 class DatabaseModule {
     @Provides
     @Singleton
