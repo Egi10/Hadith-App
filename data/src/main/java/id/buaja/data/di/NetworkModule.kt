@@ -17,25 +17,33 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object NetworkModule {
+class NetworkModule {
     /**
     https://developer.android.com/training/dependency-injection/hilt-android#inject-provides
      */
     @Provides
     @Singleton
-    fun provideService(): ApiService {
-        val httpClient = OkHttpClient.Builder()
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60L, TimeUnit.SECONDS)
             .writeTimeout(60L, TimeUnit.SECONDS)
             .build()
+    }
 
-        val retrofit = Retrofit.Builder()
+    @Provides
+    @Singleton
+    fun provideRetrofit(httpClient: OkHttpClient): Retrofit {
+        return Retrofit.Builder()
             .baseUrl("https://islamic-api-indonesia.herokuapp.com/api/data/json/hadith/")
             .addConverterFactory(MoshiConverterFactory.create())
             .client(httpClient)
             .build()
+    }
 
+    @Provides
+    @Singleton
+    fun provideService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
     }
 }

@@ -6,7 +6,7 @@ dependencies {
     // Domain Module
     api project(":domain")
     // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     // Room
     implementation "androidx.room:room-runtime:$room_version"
